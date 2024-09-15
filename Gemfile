@@ -10,3 +10,7 @@ gem "rake", "~> 13.0"
 gem "minitest", "~> 5.16"
 
 gem "rubocop", "~> 1.21"
+
+gem "sinatra", "~> 4.0"
+
+gem "rackup", "~> 2.1"
