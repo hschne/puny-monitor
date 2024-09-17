@@ -9,4 +9,11 @@ require "rubocop/rake_task"
 
 RuboCop::RakeTask.new
 
+require "sinatra"
+require_relative "lib/puny_monitor/app"
+desc "Run PunyMonitor"
+task :run do
+  run PunyMonitor::App
+end
+
 task default: %i[test rubocop]
