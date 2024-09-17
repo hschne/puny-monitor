@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "A batteries-included monitoring tool for single hosts. Works great with Kamal."
   spec.homepage = "https://github.com/hschne/puny-monitor"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.0.0"
+  spec.required_ruby_version = ">= 3.3.0"
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org'"
 
