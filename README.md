@@ -1,24 +1,17 @@
-# Puny::Monitor
 
-TODO: Delete this and the text below, and describe your gem
+# Puny Monitor
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/puny/monitor`. To experiment with that code, run `bin/console` for an interactive prompt.
+A batteries-included monitoring tool for single hosts.
 
-## Installation
+- Just enough monitoring to be useful 🔍
+- Install in 30 seconds 🏎️
+- Perfect for Kamal and other containerized setups 🐋
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+## Why Puny Monitor? 
 
-Install the gem and add to the application's Gemfile by executing:
+Puny Monitor aims to be a dead-simple, no-frills monitoring solution for single hosts. It provides enough information to be useful (and not a bit more) and avoids the complications and overhead that come with existing solutions. 
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-
-## Usage
-
-TODO: Write usage instructions here
+To put it simply, Puny Monitor replicates [Digital Ocean's Monitoring](https://www.digitalocean.com/products/monitoring) but runs on any ol' VPS or metal server you might have lying around. It is the perfect solution for IndieHackers who use Rails & Kamal, but works beautifully for anyone that wants some useful monitoring quickly. 
 
 ## Development
 
