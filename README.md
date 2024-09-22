@@ -5,7 +5,7 @@ A batteries-included monitoring tool for single hosts.
 
 - Just enough monitoring to be useful 🔍
 - Install in 30 seconds 🏎️
-- Perfect for Kamal and other containerized setups 🐋
+- Perfect for [Kamal](https://kamal-deploy.org/) and other containerized setups 🐋
 
 ## Why Puny Monitor? 
 

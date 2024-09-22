@@ -2,8 +2,11 @@
 
 require "sinatra/base"
 require "sinatra/reloader"
+require "sinatra/activerecord"
 require "securerandom"
 require "sys/cpu"
+
+require_relative "config/application"
 
 module PunyMonitor
   class App < Sinatra::Base

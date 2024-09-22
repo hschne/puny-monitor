@@ -6,7 +6,9 @@ source "https://rubygems.org"
 gemspec
 
 gem "sinatra", "~> 4.0"
+gem "sinatra-activerecord", "~> 2.0"
 gem "sinatra-contrib", "~> 4.0"
+gem "sys-cpu", "~> 1.1"
 
 gem "rackup", "~> 2.1"
 gem "rake", "~> 13.0"
@@ -22,4 +24,6 @@ group :test do
   gem "minitest", "~> 5.16"
 end
 
-gem "sys-cpu", "~> 1.1"
+gem "sqlite3", "~> 2.0"
+
+gem "rufus-scheduler", "~> 3.9"
