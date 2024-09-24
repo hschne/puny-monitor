@@ -27,3 +27,11 @@ end
 group :test do
   gem "minitest", "~> 5.16"
 end
+
+gem "chartkick", "~> 5.1"
+
+gem "groupdate", "~> 6.4"
+
+gem "debug", "~> 1.9"
+
+gem "erb-formatter", "~> 0.7.3"

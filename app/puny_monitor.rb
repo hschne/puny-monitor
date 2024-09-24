@@ -6,13 +6,19 @@ require "sinatra/activerecord"
 require "securerandom"
 require "sys/cpu"
 require "rufus-scheduler"
+require "chartkick"
+require "groupdate"
 require_relative "models/cpu_load"
-require_relative "config/application"
+
+require_relative "../config/application"
+
+require "debug"
 
 module PunyMonitor
   class App < Sinatra::Base
     configure do
       set :erb, layout: :layout
+      set :public_folder, File.join(__dir__, "..", "public")
       @scheduler = Rufus::Scheduler.new
     end
 
@@ -22,10 +28,13 @@ module PunyMonitor
 
     get "/" do
       version = Sys::CPU::VERSION
-      avg = Sys::CPU.load_avg.join(", ")
-      stats = Sys::CPU.cpu_stats
-      cpu_loads = CpuLoad.order(created_at: :desc).limit(10)
-      erb :index, locals: { version:, avg:, stats:, cpu_loads: }
+      Sys::CPU.load_avg.join(", ")
+      end_time = Time.now
+      start_time = end_time - 1.hour
+      cpu_loads = CpuLoad.where(created_at: start_time..end_time)
+                         .group_by_minute(:created_at, n: 1, series: true)
+                         .average(:load_average)
+      erb :index, locals: { version:, cpu_loads: }
     end
 
     @scheduler.every "5s" do

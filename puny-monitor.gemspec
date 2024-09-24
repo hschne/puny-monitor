@@ -5,8 +5,8 @@ require_relative "lib/puny_monitor/version"
 Gem::Specification.new do |spec|
   spec.name = "puny-monitor"
   spec.version = PunyMonitor::VERSION
-  spec.authors = ["hschne"]
-  spec.email = ["hans.schnedlitz@gmail.com"]
+  spec.authors = ["Hans Schnedlitz"]
+  spec.email = ["hello@hansschnedlitz.com"]
 
   spec.summary = "A batteries-included monitoring tool for single hosts. Works great with Kamal."
   spec.homepage = "https://github.com/hschne/puny-monitor"
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files = Dir["{bin,lib,sig}/**/*", "LICENSE", "README.md"]
+  spec.files = Dir["{bin,app,config,db,sig}/**/*", "LICENSE", "README.md"]
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]

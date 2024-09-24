@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-require_relative "lib/puny_monitor/app"
+require_relative "app/puny_monitor"
 run PunyMonitor::App

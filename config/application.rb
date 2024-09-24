@@ -9,11 +9,4 @@ ActiveRecord::Base.configurations = YAML.load_file(config_path)
 ActiveRecord::Base.establish_connection(:development)
 
 # Loads all models
-Dir["#{__dir__}/../models/*.rb"].each { |file| require file }
-
-require "rufus-scheduler"
-scheduler = Rufus::Scheduler.new
-
-scheduler.every "5s" do
-  puts "Hello... Rufus"
-end
+Dir["#{__dir__}/../app/models/*.rb"].each { |file| require file }

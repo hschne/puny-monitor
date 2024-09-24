@@ -1,0 +1,16 @@
+<h1>CPU Information</h1>
+<p>Version:
+  <%= version %></p>
+<h2>Recent CPU Loads</h2>
+<%= line_chart cpu_loads,
+xtitle: "Time",
+ytitle: "Load Average",
+height: "400px",
+library: {
+  title: {
+    text: "CPU Load Over Time",
+  },
+  yAxis: {
+    min: 0,
+  },
+} %>
