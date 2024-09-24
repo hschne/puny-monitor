@@ -1,8 +1,14 @@
-<h1>Hello World! 1</h1>
-
+<h1>CPU Information</h1>
 <p>Version:
   <%= version %></p>
-<p>Avg:
+<p>Load Average:
   <%= avg %></p>
-<p>Stats:
-  <%= stats %></p>
+<h2>CPU Stats</h2>
+<pre><%= stats.inspect %></pre>
+<h2>Recent CPU Loads</h2>
+<ul>
+  <% cpu_loads.each do |load| %>
+    <li><%= load.load_average %>
+      (<%= load.created_at %>)</li>
+  <% end %>
+</ul>
