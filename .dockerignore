@@ -1,0 +1,10 @@
+# .dockerignore
+.git
+.gitignore
+.rubocop.yml
+README.md
+*.log
+tmp/
+test/
+spec/
+db/*.sqlite3.*
