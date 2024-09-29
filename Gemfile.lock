@@ -129,6 +129,10 @@ GEM
       prettier_print (>= 1.2.0)
     sys-cpu (1.1.0)
       ffi (~> 1.1)
+    sys-filesystem (1.5.0)
+      ffi (~> 1.1)
+    sys-memory (0.2.0)
+      ffi (~> 1.1)
     tilt (2.4.0)
     timeout (0.4.1)
     tzinfo (2.0.6)
@@ -159,6 +163,8 @@ DEPENDENCIES
   sinatra-contrib (~> 4.0)
   sqlite3 (~> 2.0)
   sys-cpu (~> 1.1)
+  sys-filesystem (~> 1.4)
+  sys-memory (~> 0.2)
 
 BUNDLED WITH
    2.5.14

@@ -1,16 +1,41 @@
-<h1>CPU Information</h1>
-<p>Version:
-  <%= version %></p>
+<h1>System Information</h1>
+<p>CPU Version: <%= version %></p>
+
 <h2>Recent CPU Loads</h2>
-<%= line_chart cpu_loads,
-xtitle: "Time",
-ytitle: "Load Average",
-height: "400px",
-library: {
-  title: {
-    text: "CPU Load Over Time",
+<%= line_chart "/data/cpu",
+  xtitle: "Time",
+  ytitle: "Load Average",
+  height: "400px",
+  library: {
+    title: { text: "CPU Load Over Time" },
+    yAxis: { min: 0 },
   },
-  yAxis: {
-    min: 0,
+  refresh: 60,
+  defer: true
+%>
+
+<h2>Memory Usage</h2>
+<%= line_chart "/data/memory",
+  xtitle: "Time",
+  ytitle: "Used Memory (%)",
+  height: "400px",
+  library: {
+    title: { text: "Memory Usage Over Time" },
+    yAxis: { min: 0, max: 100 },
   },
-} %>
+  refresh: 60,
+  defer: true
+%>
+
+<h2>Filesystem Usage</h2>
+<%= line_chart "/data/filesystem",
+  xtitle: "Time",
+  ytitle: "Used Space (%)",
+  height: "400px",
+  library: {
+    title: { text: "Filesystem Usage Over Time" },
+    yAxis: { min: 0, max: 100 },
+  },
+  refresh: 60,
+  defer: true
+%>

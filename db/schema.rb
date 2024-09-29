@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2023_05_15_123456) do
+ActiveRecord::Schema[7.2].define(version: 2023_05_15_123458) do
   create_table "cpu_loads", force: :cascade do |t|
     t.float "load_average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "filesystem_usages", force: :cascade do |t|
+    t.float "used_percent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "memory_usages", force: :cascade do |t|
+    t.float "used_percent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
