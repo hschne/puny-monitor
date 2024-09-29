@@ -13,13 +13,11 @@ refresh: 5 %>
 <h2>Memory Usage</h2>
 <%= line_chart "/data/memory",
 ytitle: "Used Memory (%)",
+min: 0,
+max: 100,
 library: {
   title: {
     text: "Memory Usage",
-    yAxis: {
-      min: 0,
-      max: 100,
-    },
   },
 },
 refresh: 5 %>
