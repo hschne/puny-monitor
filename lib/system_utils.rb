@@ -1,3 +1,5 @@
+require "sys/filesystem"
+
 module SystemUtils
   class << self
     def cpu_load_average
@@ -18,7 +20,15 @@ module SystemUtils
       0.0
     end
 
-    def filesystem_usage_percent(_mount_point = "/")
+    def filesystem_usage_percent(mount_point = "/")
+      stat = Sys::Filesystem.stat(mount_point)
+      total_blocks = stat.blocks
+      available_blocks = stat.blocks_available
+      used_blocks = total_blocks - available_blocks
+      used_percent = (used_blocks.to_f / total_blocks * 100).round(2)
+      [used_percent, 100.0].min
+    rescue StandardError => e
+      puts "Error reading filesystem usage: #{e.message}"
       0.0
     end
 

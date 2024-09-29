@@ -37,6 +37,8 @@ GEM
       syntax_tree (~> 6.0)
     et-orbi (1.2.11)
       tzinfo
+    ffi (1.17.0)
+    ffi (1.17.0-x86_64-linux-gnu)
     foreman (0.88.1)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
@@ -125,6 +127,8 @@ GEM
     stringio (3.1.1)
     syntax_tree (6.2.0)
       prettier_print (>= 1.2.0)
+    sys-filesystem (1.5.0)
+      ffi (~> 1.1)
     tilt (2.4.0)
     timeout (0.4.1)
     tzinfo (2.0.6)
@@ -154,6 +158,7 @@ DEPENDENCIES
   sinatra-activerecord (~> 2.0)
   sinatra-contrib (~> 4.0)
   sqlite3 (~> 2.0)
+  sys-filesystem (~> 1.4)
 
 BUNDLED WITH
    2.5.14

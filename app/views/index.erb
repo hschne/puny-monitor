@@ -25,6 +25,8 @@ refresh: 5 %>
 <h2>Filesystem Usage</h2>
 <%= line_chart "/data/filesystem",
 ytitle: "Used Space (%)",
+min: 0,
+max: 100,
 library: {
   title: {
     text: "Filesystem Usage",
