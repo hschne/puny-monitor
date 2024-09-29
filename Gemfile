@@ -12,8 +12,6 @@ gem "sqlite3", "~> 2.0"
 
 gem "rufus-scheduler", "~> 3.9"
 
-gem "sys-cpu", "~> 1.1"
-
 gem "rackup", "~> 2.1"
 gem "rake", "~> 13.0"
 
@@ -35,6 +33,3 @@ gem "groupdate", "~> 6.4"
 gem "debug", "~> 1.9"
 
 gem "erb-formatter", "~> 0.7.3"
-
-gem "sys-filesystem", "~> 1.4"
-gem "sys-memory", "~> 0.2"

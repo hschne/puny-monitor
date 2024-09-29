@@ -4,17 +4,16 @@ require "sinatra/base"
 require "sinatra/reloader"
 require "sinatra/activerecord"
 require "securerandom"
-require "sys/cpu"
-require "sys/filesystem"
-require "sys/memory"
 require "rufus-scheduler"
 require "chartkick"
 require "groupdate"
 require_relative "models/cpu_load"
 require_relative "models/memory_usage"
 require_relative "models/filesystem_usage"
+require_relative "../lib/system_utils"
 
 require_relative "../config/application"
+require_relative "../config/initializers/chartkick"
 
 require "debug"
 
@@ -31,8 +30,7 @@ module PunyMonitor
     end
 
     get "/" do
-      version = Sys::CPU::VERSION
-      erb :index, locals: { version: }
+      erb :index, locals: {}
     end
 
     get "/data/cpu" do
@@ -66,15 +64,9 @@ module PunyMonitor
     end
 
     @scheduler.every "5s" do
-      CpuLoad.create(load_average: Sys::CPU.load_avg.first)
-
-      memory = Sys::Memory
-      used_percent = (memory.used.to_f / memory.total) * 100
-      MemoryUsage.create(used_percent:)
-
-      stat = Sys::Filesystem.stat("/")
-      used_percent = (stat.blocks - stat.blocks_available).to_f / stat.blocks * 100
-      FilesystemUsage.create(used_percent:)
+      CpuLoad.create(load_average: SystemUtils.cpu_load_average)
+      MemoryUsage.create(used_percent: SystemUtils.memory_usage_percent)
+      FilesystemUsage.create(used_percent: SystemUtils.filesystem_usage_percent)
     end
   end
 end
