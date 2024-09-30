@@ -10,6 +10,8 @@ require "groupdate"
 require_relative "models/cpu_load"
 require_relative "models/memory_usage"
 require_relative "models/filesystem_usage"
+require_relative "models/disk_io"
+require_relative "models/bandwidth_usage"
 require_relative "../lib/system_utils"
 
 require_relative "../config/application"
@@ -63,10 +65,44 @@ module PunyMonitor
       filesystem_usage.to_json
     end
 
+    get "/data/disk_io" do
+      content_type :json
+      end_time = Time.now
+      start_time = end_time - 1.hour
+      [
+        { name: "Read MB/s", data: DiskIO.where(created_at: start_time..end_time)
+                                         .group_by_minute(:created_at, n: 1, series: true)
+                                         .average(:read_mb_per_sec) },
+        { name: "Write MB/s", data: DiskIO.where(created_at: start_time..end_time)
+                                          .group_by_minute(:created_at, n: 1, series: true)
+                                          .average(:write_mb_per_sec) }
+      ].to_json
+    end
+
+    get "/data/bandwidth" do
+      content_type :json
+      end_time = Time.now
+      start_time = end_time - 1.hour
+      [
+        { name: "Incoming Mbps", data: BandwidthUsage.where(created_at: start_time..end_time)
+                                                    .group_by_minute(:created_at, n: 1, series: true)
+                                                    .average(:incoming_mbps) },
+        { name: "Outgoing Mbps", data: BandwidthUsage.where(created_at: start_time..end_time)
+                                                     .group_by_minute(:created_at, n: 1, series: true)
+                                                     .average(:outgoing_mbps) }
+      ].to_json
+    end
+
     @scheduler.every "5s" do
-      CpuLoad.create(load_average: SystemUtils.cpu_load_average)
+      CpuLoad.create(load_average: SystemUtils.cpu_usage_percent)
       MemoryUsage.create(used_percent: SystemUtils.memory_usage_percent)
       FilesystemUsage.create(used_percent: SystemUtils.filesystem_usage_percent)
+
+      disk_io = SystemUtils.disk_io_stats
+      DiskIO.create(read_mb_per_sec: disk_io[:read_mb_per_sec], write_mb_per_sec: disk_io[:write_mb_per_sec])
+
+      bandwidth = SystemUtils.bandwidth_usage
+      BandwidthUsage.create(incoming_mbps: bandwidth[:incoming_mbps], outgoing_mbps: bandwidth[:outgoing_mbps])
     end
   end
 end

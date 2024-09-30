@@ -1,18 +1,30 @@
 <h1>System Information</h1>
 
-<h2>Recent CPU Loads</h2>
+<h2>CPU Usage</h2>
 <%= area_chart "/data/cpu",
-ytitle: "Load Average",
+ytitle: "CPU Usage (%)",
+min: 0,
+max: 100,
 library: {
   title: {
-    text: "CPU Load Over Time",
+    text: "CPU Usage",
+  },
+},
+refresh: 5 %>
+
+<h2>Bandwidth Usage</h2>
+<%= line_chart "/data/bandwidth",
+ytitle: "Bandwidth (Mbps)",
+library: {
+  title: {
+    text: "Bandwidth Usage",
   },
 },
 refresh: 5 %>
 
 <h2>Memory Usage</h2>
 <%= line_chart "/data/memory",
-ytitle: "Used Memory (%)",
+ytitle: "Memory Usage (%)",
 min: 0,
 max: 100,
 library: {
@@ -30,6 +42,16 @@ max: 100,
 library: {
   title: {
     text: "Filesystem Usage",
+  },
+},
+refresh: 5 %>
+
+<h2>Disk I/O</h2>
+<%= area_chart "/data/disk_io",
+ytitle: "MB/s",
+library: {
+  title: {
+    text: "Disk I/O",
   },
 },
 refresh: 5 %>

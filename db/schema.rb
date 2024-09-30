@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2023_05_15_123458) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_30_155845) do
+  create_table "bandwidth_usages", force: :cascade do |t|
+    t.float "incoming_mbps"
+    t.float "outgoing_mbps"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cpu_loads", force: :cascade do |t|
     t.float "load_average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "disk_ios", force: :cascade do |t|
+    t.float "read_mb_per_sec"
+    t.float "write_mb_per_sec"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
