@@ -1,10 +1,40 @@
 # .dockerignore
+# Version control
 .git
 .gitignore
-.rubocop.yml
+
+# Documentation and metadata
 README.md
-*.log
-tmp/
+CHANGELOG.md
+LICENSE
+LICENSE.txt
+
+# Development and testing
+.rubocop.yml
 test/
 spec/
-db/*.sqlite3.*
+*.log
+
+# Temporary files and caches
+tmp/
+.sass-cache/
+.bundle/
+
+# Database files
+db/*.sqlite3*
+
+# Docker-specific
+Dockerfile
+.dockerignore
+
+# Ruby-specific
+.ruby-version
+.ruby-gemset
+
+# Editor-specific
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db

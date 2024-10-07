@@ -1,6 +1,6 @@
 require "sys/filesystem"
 
-module SystemUtils
+class SystemUtils
   class << self
     def cpu_usage_percent
       prev_cpu = read_cpu_stat
@@ -23,6 +23,10 @@ module SystemUtils
       [cpu_percentage, 100.0].min
     end
 
+    def cpu_load_average
+      File.read("#{proc_path}/loadavg").split.take(3).map(&:to_f)
+    end
+
     def memory_usage_percent
       mem_info = File.read("#{proc_path}/meminfo")
       total = mem_info.match(/MemTotal:\s+(\d+)/)[1].to_f
@@ -33,8 +37,8 @@ module SystemUtils
       (used / total * 100).round(2)
     end
 
-    def filesystem_usage_percent(mount_point = "/")
-      stat = Sys::Filesystem.stat(mount_point)
+    def filesystem_usage_percent
+      stat = Sys::Filesystem.stat(root_path)
       total_blocks = stat.blocks
       available_blocks = stat.blocks_available
       used_blocks = total_blocks - available_blocks
@@ -78,7 +82,11 @@ module SystemUtils
     private
 
     def proc_path
-      ENV.fetch("PROC_PATH", "/proc")
+      File.join(root_path, "proc")
+    end
+
+    def root_path
+      ENV.fetch("ROOT_PATH", "/")
     end
 
     def read_cpu_stat

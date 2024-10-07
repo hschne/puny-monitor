@@ -37,6 +37,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_30_155845) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "load_averages", force: :cascade do |t|
+    t.float "one_minute"
+    t.float "five_minutes"
+    t.float "fifteen_minutes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "memory_usages", force: :cascade do |t|
     t.float "used_percent"
     t.datetime "created_at", null: false

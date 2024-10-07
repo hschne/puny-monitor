@@ -12,18 +12,18 @@ library: {
 },
 refresh: 5 %>
 
-<h2>Bandwidth Usage</h2>
-<%= line_chart "/data/bandwidth",
-ytitle: "Bandwidth (Mbps)",
+<h2>Load Average</h2>
+<%= line_chart "/data/load_average",
+ytitle: "Load Average",
 library: {
   title: {
-    text: "Bandwidth Usage",
+    text: "Load Average",
   },
 },
 refresh: 5 %>
 
 <h2>Memory Usage</h2>
-<%= line_chart "/data/memory",
+<%= area_chart "/data/memory",
 ytitle: "Memory Usage (%)",
 min: 0,
 max: 100,
@@ -35,7 +35,7 @@ library: {
 refresh: 5 %>
 
 <h2>Filesystem Usage</h2>
-<%= line_chart "/data/filesystem",
+<%= area_chart "/data/filesystem",
 ytitle: "Used Space (%)",
 min: 0,
 max: 100,
@@ -52,6 +52,16 @@ ytitle: "MB/s",
 library: {
   title: {
     text: "Disk I/O",
+  },
+},
+refresh: 5 %>
+
+<h2>Bandwidth Usage</h2>
+<%= area_chart "/data/bandwidth",
+ytitle: "Bandwidth (Mbps)",
+library: {
+  title: {
+    text: "Bandwidth Usage",
   },
 },
 refresh: 5 %>
