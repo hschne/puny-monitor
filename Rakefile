@@ -24,12 +24,22 @@ if PunyMonitor::App.development?
 
     desc "Run Docker container"
     task :run do
-      sh "docker run --rm -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db -p 80:4567 -e ROOT_PATH=/host hschne/puny-monitor:latest"
+      `docker run --rm \
+        -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db \
+        -e ROOT_PATH=/host \
+        -p 80:4567 \
+        hschne/puny-monitor:latest`
     end
 
     desc "Run  Docker interactive shell"
     task :shell do
-      sh "docker run --rm -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db -p 80:4567 -e ROOT_PATH=/host -it hschne/puny-monitor:latest /bin/bash"
+      `docker run --rm \
+        -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db \
+        -e ROOT_PATH=/host \
+        -p 80:4567 \
+        -it \
+        hschne/puny-monitor:latest \
+        /bin/bash`
     end
   end
 

@@ -12,8 +12,10 @@ class SystemUtils
       prev_idle = prev_cpu[:idle] + prev_cpu[:iowait]
       idle = current_cpu[:idle] + current_cpu[:iowait]
 
-      prev_non_idle = prev_cpu[:user] + prev_cpu[:nice] + prev_cpu[:system] + prev_cpu[:irq] + prev_cpu[:softirq] + prev_cpu[:steal]
-      non_idle = current_cpu[:user] + current_cpu[:nice] + current_cpu[:system] + current_cpu[:irq] + current_cpu[:softirq] + current_cpu[:steal]
+      prev_non_idle = prev_cpu[:user] + prev_cpu[:nice] + prev_cpu[:system] +
+                      prev_cpu[:irq] + prev_cpu[:softirq] + prev_cpu[:steal]
+      non_idle = current_cpu[:user] + current_cpu[:nice] + current_cpu[:system] +
+                 current_cpu[:irq] + current_cpu[:softirq] + current_cpu[:steal]
 
       prev_total = prev_idle + prev_non_idle
       total = idle + non_idle
