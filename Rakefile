@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
+require_relative "config/environment"
 require "bundler/gem_tasks"
-
 require "sinatra/activerecord/rake"
-require_relative "app/puny_monitor"
 
 if PunyMonitor::App.development?
   require "minitest/test_task"
@@ -25,12 +24,12 @@ if PunyMonitor::App.development?
 
     desc "Run Docker container"
     task :run do
-      sh "docker run --rm -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db -p 80:4567 -e PROC_PATH=/host/proc puny-monitor:latest"
+      sh "docker run --rm -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db -p 80:4567 -e PROC_PATH=/host/proc hschne/puny-monitor:latest"
     end
 
     desc "Run  Docker interactive shell"
     task :shell do
-      sh "docker run --rm -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db -p 80:4567 -e PROC_PATH=/host/proc -it puny-monitor:latest /bin/bash"
+      sh "docker run --rm -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db -p 80:4567 -e PROC_PATH=/host/proc -it hschne/puny-monitor:latest /bin/bash"
     end
   end
 

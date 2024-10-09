@@ -5,13 +5,18 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in puny-monitor.gemspec
 gemspec
 
-gem "sinatra", "~> 4.0"
+# Require only base
+# See http://aaronlerch.github.io/blog/sinatra-bundler-and-the-global-namespace/
+gem "sinatra", "~> 4.0", require: "sinatra/base"
+gem "sinatra-contrib", "~> 4.0", require: false
+
+# Database
+gem "groupdate", "~> 6.4"
 gem "sinatra-activerecord", "~> 2.0"
-gem "sinatra-contrib", "~> 4.0"
 gem "sqlite3", "~> 2.0"
 
+# Funcationality
 gem "chartkick", "~> 5.1"
-gem "groupdate", "~> 6.4"
 gem "rufus-scheduler", "~> 3.9"
 gem "sys-filesystem", "~> 1.4"
 

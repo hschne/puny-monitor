@@ -1,24 +1,7 @@
 # frozen_string_literal: true
 
-require "sinatra/base"
-require "sinatra/reloader"
-require "sinatra/activerecord"
-require "securerandom"
-require "rufus-scheduler"
-require "chartkick"
-require "groupdate"
-require_relative "models/cpu_load"
-require_relative "models/memory_usage"
-require_relative "models/filesystem_usage"
-require_relative "models/disk_io"
-require_relative "models/bandwidth_usage"
-require_relative "models/load_average"
+require "sinatra/contrib"
 require_relative "../lib/system_utils"
-
-require_relative "../config/application"
-require_relative "../config/initializers/chartkick"
-
-require "debug"
 
 module PunyMonitor
   class App < Sinatra::Base
