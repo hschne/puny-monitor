@@ -3,7 +3,7 @@
 # # frozen_string_literal: true
 
 Chartkick.options = {
-  height: "400px",
+  height: "25rem",
   xtitle: "Time",
   points: false,
   curve: false

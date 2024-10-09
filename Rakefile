@@ -24,12 +24,12 @@ if PunyMonitor::App.development?
 
     desc "Run Docker container"
     task :run do
-      sh "docker run --rm -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db -p 80:4567 -e PROC_PATH=/host/proc hschne/puny-monitor:latest"
+      sh "docker run --rm -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db -p 80:4567 -e ROOT_PATH=/host hschne/puny-monitor:latest"
     end
 
     desc "Run  Docker interactive shell"
     task :shell do
-      sh "docker run --rm -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db -p 80:4567 -e PROC_PATH=/host/proc -it hschne/puny-monitor:latest /bin/bash"
+      sh "docker run --rm -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db -p 80:4567 -e ROOT_PATH=/host -it hschne/puny-monitor:latest /bin/bash"
     end
   end
 

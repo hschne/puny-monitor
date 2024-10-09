@@ -37,6 +37,7 @@ Dockerfile
 # Ruby-specific
 .ruby-version
 .ruby-gemset
+.irbrc
 
 # OS-specific
 .DS_Store

@@ -7,6 +7,34 @@ A batteries-included monitoring tool for single hosts.
 - Install in 30 seconds 🏎️
 - Perfect for [Kamal](https://kamal-deploy.org/) and other containerized setups 🐋
 
+## Getting Started
+
+Puny Monitor works best with Docker. Run this command to check it out quickly: 
+
+```
+docker run --rm \
+  -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db \
+  -e HOST_PATH=/host \
+  -p 4567:4567 \
+  hschne/puny-monitor:latest
+```
+
+Visit [localhost:4567](http://localhost:4567) to check your system data. To see how to deploy Puny Monitor in a production environment see [Deployment]
+
+## Deployment
+
+Puny Monitor was made with [Kamal](https://kamal-deploy.org/) and [Ruby on Rails](https://rubyonrails.org/) in mind. It is recommended that you deploy it as an accessory to your application. Add the following lines to `config/deploy.yml`:
+
+```
+TODO
+```
+
+Then run `kamal-proxy` to point to Puny Monitor: 
+
+```
+TODO
+```
+
 ## Why Puny Monitor? 
 
 Puny Monitor aims to be a dead-simple, no-frills monitoring solution for single hosts. It provides enough information to be useful (and not a bit more) and avoids the complications and overhead that come with existing solutions. 

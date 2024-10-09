@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PunyMonitor</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/chartkick@4.2.0/dist/chartkick.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chartkick@4.2.0/dist/chartkick.min.js"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script
+      src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"
+    ></script>
+    <link
+      rel="preload"
+      href="fonts/Rubik.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    >
+    <link href="style.css" rel="stylesheet">
+  </head>
   <body>
-    <%= yield %>
+    <header>
+      <h1>Puny Monitor</h1>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    </footer>
   </body>
-
 </html>

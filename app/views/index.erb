@@ -1,67 +1,81 @@
-<h1>System Information</h1>
+<section class="charts">
 
-<h2>CPU Usage</h2>
-<%= area_chart "/data/cpu",
-ytitle: "CPU Usage (%)",
-min: 0,
-max: 100,
-library: {
-  title: {
-    text: "CPU Usage",
-  },
-},
-refresh: 5 %>
+  <div class="tile">
+    <h2>CPU Usage</h2>
+    <%= area_chart "/data/cpu",
+    ytitle: "CPU Usage (%)",
+    min: 0,
+    max: 100,
+    library: {
+      title: {
+        text: "CPU Usage",
+      },
+    },
+    refresh: 5 %>
+  </div>
 
-<h2>Load Average</h2>
-<%= line_chart "/data/load_average",
-ytitle: "Load Average",
-library: {
-  title: {
-    text: "Load Average",
-  },
-},
-refresh: 5 %>
+  <div class="tile">
+    <h2>Load Average</h2>
+    <%= line_chart "/data/load_average",
+    ytitle: "Load Average",
+    library: {
+      title: {
+        text: "Load Average",
+      },
+    },
+    refresh: 5 %>
+  </div>
 
-<h2>Memory Usage</h2>
-<%= area_chart "/data/memory",
-ytitle: "Memory Usage (%)",
-min: 0,
-max: 100,
-library: {
-  title: {
-    text: "Memory Usage",
-  },
-},
-refresh: 5 %>
+  <div class="tile">
+    <h2>Memory Usage</h2>
+    <%= area_chart "/data/memory",
+    ytitle: "Memory Usage (%)",
+    min: 0,
+    max: 100,
+    library: {
+      title: {
+        text: "Memory Usage",
+      },
+    },
+    refresh: 5 %>
+  </div>
 
-<h2>Filesystem Usage</h2>
-<%= area_chart "/data/filesystem",
-ytitle: "Used Space (%)",
-min: 0,
-max: 100,
-library: {
-  title: {
-    text: "Filesystem Usage",
-  },
-},
-refresh: 5 %>
+  <div class="tile">
+    <h2>Filesystem Usage</h2>
+    <%= area_chart "/data/filesystem",
+    ytitle: "Used Space (%)",
+    min: 0,
+    max: 100,
+    library: {
+      title: {
+        text: "Filesystem Usage",
+      },
+    },
+    refresh: 5 %>
+  </div>
 
-<h2>Disk I/O</h2>
-<%= area_chart "/data/disk_io",
-ytitle: "MB/s",
-library: {
-  title: {
-    text: "Disk I/O",
-  },
-},
-refresh: 5 %>
+  <div class="tile">
+    <h2>Disk I/O</h2>
+    <%= area_chart "/data/disk_io",
+    ytitle: "MB/s",
+    library: {
+      title: {
+        text: "Disk I/O",
+      },
+    },
+    refresh: 5 %>
+  </div>
 
-<h2>Bandwidth Usage</h2>
-<%= area_chart "/data/bandwidth",
-ytitle: "Bandwidth (Mbps)",
-library: {
-  title: {
-    text: "Bandwidth Usage",
-  },
-},
-refresh: 5 %>
+  <div class="tile">
+    <h2>Bandwidth Usage</h2>
+    <%= area_chart "/data/bandwidth",
+    ytitle: "Bandwidth (Mbps)",
+    library: {
+      title: {
+        text: "Bandwidth Usage",
+      },
+    },
+    refresh: 5 %>
+  </div>
+
+</section>
