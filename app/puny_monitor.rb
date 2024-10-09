@@ -23,14 +23,17 @@ require "debug"
 module PunyMonitor
   class App < Sinatra::Base
     configure do
-      set :erb, layout: :layout
-      set :public_folder, File.join(__dir__, "..", "public")
+      register Sinatra::ActiveRecordExtension
       @scheduler = Rufus::Scheduler.new
     end
 
     configure :development do
       register Sinatra::Reloader
     end
+
+    set :erb, layout: :layout
+    set :public_folder, File.join(__dir__, "..", "public")
+    set :database_file, "../config/database.yml"
 
     get "/" do
       erb :index, locals: {}

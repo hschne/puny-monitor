@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-require_relative "app/puny_monitor"
+require_relative "config/environment"
 run PunyMonitor::App

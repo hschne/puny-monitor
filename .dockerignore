@@ -1,40 +1,42 @@
 # .dockerignore
 # Version control
-.git
-.gitignore
+/.git
+/.gitignore
 
 # Documentation and metadata
-README.md
-CHANGELOG.md
-LICENSE
-LICENSE.txt
+/README.md
+/CHANGELOG.md
+/LICENSE
+/LICENSE.txt
 
 # Development and testing
-.rubocop.yml
-test/
-spec/
-*.log
+/*.log
+/.aider.*
+/.idea/
+/.rubocop.yml
+/.ruby-lsp
+/.vscode/
+/.github/
+/Procfile
+/spec/
+/test/
 
 # Temporary files and caches
-tmp/
-.sass-cache/
-.bundle/
+/tmp/
+/.sass-cache/
+/.bundle/
 
 # Database files
-db/*.sqlite3*
+/db/*.sqlite3*
 
 # Docker-specific
-Dockerfile
-.dockerignore
+/Dockerfile
+/.dockerignore
 
 # Ruby-specific
-.ruby-version
-.ruby-gemset
-
-# Editor-specific
-.vscode/
-.idea/
+/.ruby-version
+/.ruby-gemset
 
 # OS-specific
-.DS_Store
-Thumbs.db
+/.DS_Store
+/Thumbs.db
