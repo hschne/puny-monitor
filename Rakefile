@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "config/environment"
-require "bundler/gem_tasks"
+
 require "sinatra/activerecord/rake"
 
 if PunyMonitor::App.development?

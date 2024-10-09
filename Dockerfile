@@ -30,10 +30,6 @@ FROM base
 COPY --from=builder /usr/local/bundle /usr/local/bundle
 COPY . .
 
-RUN useradd puny-monitor --shell /bin/bash && \
-  chown -R puny-monitor:puny-monitor db
-USER puny-monitor:puny-monitor
-
 ENV ROOT_PATH='/host'
 
 EXPOSE 4567
