@@ -29,15 +29,14 @@ Puny Monitor was made with [Kamal](https://kamal-deploy.org/) and [Ruby on Rails
 accessories:
   puny-monitor:
     image: hschne/puny-monitor:latest
-    host: 159.69.18.121
+    host: <host>
     port: 4567
     volumes:
       - /:/host:ro,rslave
-      - puny-data:/puny-monitor/db
+      - puny-monitor-data:/puny-monitor/db
       
 aliases:
-  shell: app exec --interactive --reuse "bash"
-  add-monitoring-to-proxy: |
+  add-puny-monitor-to-proxy: |
     server exec docker exec kamal-proxy kamal-proxy deploy puny-monitor 
     --target "<your-service-name>-puny-monitor:4567"
     --host "puny-monitor.<your-domain>"
@@ -47,7 +46,7 @@ aliases:
 Then run `kamal-proxy` to point to Puny Monitor: 
 
 ```
-kamal add-monitoring-to-proxy
+kamal add-puny-monitor-to-proxy
 ```
 
 ## Why Puny Monitor? 
