@@ -22,6 +22,10 @@ module PunyMonitor
       erb :index, locals: {}
     end
 
+    get "/up" do
+      200
+    end
+
     get "/data/cpu" do
       content_type :json
       end_time = Time.now

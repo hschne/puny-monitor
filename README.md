@@ -26,13 +26,28 @@ Visit [localhost:4567](http://localhost:4567) to check your system data. To see 
 Puny Monitor was made with [Kamal](https://kamal-deploy.org/) and [Ruby on Rails](https://rubyonrails.org/) in mind. It is recommended that you deploy it as an accessory to your application. Add the following lines to `config/deploy.yml`:
 
 ```
-TODO
+accessories:
+  puny-monitor:
+    image: hschne/puny-monitor:latest
+    host: 159.69.18.121
+    port: 4567
+    volumes:
+      - /:/host:ro,rslave
+      - puny-data:/puny-monitor/db
+      
+aliases:
+  shell: app exec --interactive --reuse "bash"
+  add-monitoring-to-proxy: |
+    server exec docker exec kamal-proxy kamal-proxy deploy puny-monitor 
+    --target "<your-service-name>-puny-monitor:4567"
+    --host "puny-monitor.<your-domain>"
+    --tls
 ```
 
 Then run `kamal-proxy` to point to Puny Monitor: 
 
 ```
-TODO
+kamal add-monitoring-to-proxy
 ```
 
 ## Why Puny Monitor? 
