@@ -30,7 +30,7 @@ accessories:
   puny-monitor:
     image: hschne/puny-monitor:latest
     host: <host>
-    port: 4567
+    port: "127.0.0.1:4567:4567"
     volumes:
       - /:/host:ro,rslave
       - puny-monitor-data:/puny-monitor/db
