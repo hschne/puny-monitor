@@ -1,8 +1,23 @@
+<section>
+  <form action="/" method="get">
+    <select name="duration" onchange="this.form.submit()">
+      <option value="1h" <%= params[:duration] == '1h' ? 'selected' : '' %>>1 Hour</option>
+      <option
+        value="1d"
+        <%= params[:duration] == '1d' || params[:duration].nil? ? 'selected' : '' %>
+      >1 Day</option>
+      <option value="3d" <%= params[:duration] == '3d' ? 'selected' : '' %>>3 Days</option>
+      <option value="1w" <%= params[:duration] == '1w' ? 'selected' : '' %>>1 Week</option>
+      <option value="1m" <%= params[:duration] == '1m' ? 'selected' : '' %>>1 Month</option>
+    </select>
+  </form>
+</section>
+
 <section class="charts">
 
   <div class="tile">
     <h2>CPU Usage</h2>
-    <%= area_chart "/data/cpu_usage",
+    <%= area_chart "/data/cpu_usage?duration=#{params[:duration] || "1d"}",
     ytitle: "CPU Usage (%)",
     min: 0,
     max: 100,
@@ -16,7 +31,7 @@
 
   <div class="tile">
     <h2>CPU Load</h2>
-    <%= line_chart "/data/cpu_load",
+    <%= line_chart "/data/cpu_load?duration=#{params[:duration] || "1d"}",
     ytitle: "Load Average",
     library: {
       title: {
@@ -28,7 +43,7 @@
 
   <div class="tile">
     <h2>Memory Usage</h2>
-    <%= area_chart "/data/memory_usage",
+    <%= area_chart "/data/memory_usage?duration=#{params[:duration] || "1d"}",
     ytitle: "Memory Usage (%)",
     min: 0,
     max: 100,
@@ -42,7 +57,7 @@
 
   <div class="tile">
     <h2>Filesystem Usage</h2>
-    <%= area_chart "/data/filesystem_usage",
+    <%= area_chart "/data/filesystem_usage?duration=#{params[:duration] || "1d"}",
     ytitle: "Used Space (%)",
     min: 0,
     max: 100,
@@ -56,7 +71,7 @@
 
   <div class="tile">
     <h2>Disk I/O</h2>
-    <%= area_chart "/data/disk_io",
+    <%= area_chart "/data/disk_io?duration=#{params[:duration] || "1d"}",
     ytitle: "MB/s",
     library: {
       title: {
@@ -68,7 +83,7 @@
 
   <div class="tile">
     <h2>Bandwidth</h2>
-    <%= area_chart "/data/bandwidth",
+    <%= area_chart "/data/bandwidth?duration=#{params[:duration] || "1d"}",
     ytitle: "Bandwidth (Mbps)",
     library: {
       title: {
