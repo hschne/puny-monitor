@@ -2,7 +2,7 @@
 
   <div class="tile">
     <h2>CPU Usage</h2>
-    <%= area_chart "/data/cpu",
+    <%= area_chart "/data/cpu_usage",
     ytitle: "CPU Usage (%)",
     min: 0,
     max: 100,
@@ -15,8 +15,8 @@
   </div>
 
   <div class="tile">
-    <h2>Load Average</h2>
-    <%= line_chart "/data/load_average",
+    <h2>CPU Load</h2>
+    <%= line_chart "/data/cpu_load",
     ytitle: "Load Average",
     library: {
       title: {
@@ -28,7 +28,7 @@
 
   <div class="tile">
     <h2>Memory Usage</h2>
-    <%= area_chart "/data/memory",
+    <%= area_chart "/data/memory_usage",
     ytitle: "Memory Usage (%)",
     min: 0,
     max: 100,
@@ -42,7 +42,7 @@
 
   <div class="tile">
     <h2>Filesystem Usage</h2>
-    <%= area_chart "/data/filesystem",
+    <%= area_chart "/data/filesystem_usage",
     ytitle: "Used Space (%)",
     min: 0,
     max: 100,
@@ -67,12 +67,12 @@
   </div>
 
   <div class="tile">
-    <h2>Bandwidth Usage</h2>
+    <h2>Bandwidth</h2>
     <%= area_chart "/data/bandwidth",
     ytitle: "Bandwidth (Mbps)",
     library: {
       title: {
-        text: "Bandwidth Usage",
+        text: "Bandwidth",
       },
     },
     refresh: 5 %>
