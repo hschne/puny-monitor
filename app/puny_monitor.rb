@@ -33,6 +33,7 @@ module PunyMonitor
       cpu_loads = CpuUsage.where(created_at: start_time..end_time)
                           .group_by_period(group_by, :created_at, series: true)
                           .average(:used_percent)
+                          .transform_values { |value| value&.round(2) }
       cpu_loads.to_json
     end
 
@@ -43,13 +44,16 @@ module PunyMonitor
       [
         { name: "1 minute", data: CpuLoad.where(created_at: start_time..end_time)
                                          .group_by_period(group_by, :created_at, series: true)
-                                         .average(:one_minute) },
+                                         .average(:one_minute)
+                                         .transform_values { |value| value&.round(2) } },
         { name: "5 minutes", data: CpuLoad.where(created_at: start_time..end_time)
                                           .group_by_period(group_by, :created_at, series: true)
-                                          .average(:five_minutes) },
+                                          .average(:five_minutes)
+                                          .transform_values { |value| value&.round(2) } },
         { name: "15 minutes", data: CpuLoad.where(created_at: start_time..end_time)
                                            .group_by_period(group_by, :created_at, series: true)
-                                           .average(:fifteen_minutes) }
+                                           .average(:fifteen_minutes)
+                                           .transform_values { |value| value&.round(2) } }
       ].to_json
     end
 
@@ -60,6 +64,7 @@ module PunyMonitor
       memory_usage = MemoryUsage.where(created_at: start_time..end_time)
                                 .group_by_period(group_by, :created_at, series: true)
                                 .average(:used_percent)
+                                .transform_values { |value| value&.round(2) }
       memory_usage.to_json
     end
 
@@ -70,6 +75,7 @@ module PunyMonitor
       filesystem_usage = FilesystemUsage.where(created_at: start_time..end_time)
                                         .group_by_period(group_by, :created_at, series: true)
                                         .average(:used_percent)
+                                        .transform_values { |value| value&.round(2) }
       filesystem_usage.to_json
     end
 
@@ -80,10 +86,12 @@ module PunyMonitor
       [
         { name: "Read MB/s", data: DiskIO.where(created_at: start_time..end_time)
                                          .group_by_period(group_by, :created_at, series: true)
-                                         .average(:read_mb_per_sec) },
+                                         .average(:read_mb_per_sec)
+                                         .transform_values { |value| value&.round(2) } },
         { name: "Write MB/s", data: DiskIO.where(created_at: start_time..end_time)
                                           .group_by_period(group_by, :created_at, series: true)
-                                          .average(:write_mb_per_sec) }
+                                          .average(:write_mb_per_sec)
+                                          .transform_values { |value| value&.round(2) } }
       ].to_json
     end
 
@@ -95,10 +103,12 @@ module PunyMonitor
       [
         { name: "Incoming Mbps", data: Bandwidth.where(created_at: start_time..end_time)
                                                 .group_by_period(group_by, :created_at, series: true)
-                                                .average(:incoming_mbps) },
+                                                .average(:incoming_mbps)
+                                                .transform_values { |value| value&.round(2) } },
         { name: "Outgoing Mbps", data: Bandwidth.where(created_at: start_time..end_time)
                                                 .group_by_period(group_by, :created_at, series: true)
-                                                .average(:outgoing_mbps) }
+                                                .average(:outgoing_mbps)
+                                                .transform_values { |value| value&.round(2) } }
       ].to_json
     end
 

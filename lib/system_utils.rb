@@ -24,11 +24,13 @@ class SystemUtils
       idle_diff = idle - prev_idle
 
       cpu_percentage = ((total_diff - idle_diff).to_f / total_diff * 100).round(2)
-      [cpu_percentage, 100.0].min
+      [cpu_percentage, 100.0].min.round(2)
     end
 
     def cpu_load_average
-      File.read("#{proc_path}/loadavg").split.take(3).map(&:to_f)
+      File.read("#{proc_path}/loadavg").split.take(3)
+          .map(&:to_f)
+          .map { |value| value.round(2) }
     end
 
     def memory_usage_percent
@@ -47,7 +49,7 @@ class SystemUtils
       available_blocks = stat.blocks_available
       used_blocks = total_blocks - available_blocks
       used_percent = (used_blocks.to_f / total_blocks * 100).round(2)
-      [used_percent, 100.0].min
+      [used_percent, 100.0].min.round(2)
     end
 
     def disk_io_stats
