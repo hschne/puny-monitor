@@ -25,6 +25,7 @@
   --color-background: var(--color-grey-50);
   --color-link-active: var(--color-grey-700);
   --color-link-hover: var(--color-grey-600);
+  --color-border: var(--color-grey-400);
 
   --font-size-sm: calc(var(--font-base-size) / var(--font-scale-ratio));
   --font-size-md: var(--font-base-size);
@@ -95,7 +96,7 @@ h1 {
   flex-direction: column;
   gap: var(--space-sm);
   padding: var(--space-md);
-  border: solid 1px var(--color-grey-400);
+  border: solid 1px var(--color-border);
   border-radius: 10px;
   height: 25rem;
 }
@@ -110,9 +111,9 @@ h1 {
   select {
     font-size: var(--font-size-md);
     padding: var(--space-xxs) var(--space-xs);
-    border: 1px solid var(--color-grey-300);
+    border: 1px solid var(--color-border);
     border-radius: 5px;
-    background-color: var(--color-grey-50);
+    background-color: var(--color-background);
     color: var(--color-text);
     cursor: pointer;
     transition:
@@ -121,18 +122,28 @@ h1 {
   }
 
   select:hover {
-    border-color: var(--color-grey-400);
+    border-color: var(--color-link-hover);
   }
 
   select:focus {
     outline: none;
-    border-color: var(--color-grey-500);
-    box-shadow: 0 0 0 2px var(--color-grey-200);
+    border-color: var(--color-link-active);
+    box-shadow: 0 0 0 2px var(--color-border);
   }
 }
 
 @media (min-width: 55rem) {
   .charts {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: var(--color-grey-50);
+    --color-background: var(--color-grey-900);
+    --color-link-active: var(--color-grey-300);
+    --color-link-hover: var(--color-grey-400);
+    --color-border: var(--color-grey-600);
   }
 }
