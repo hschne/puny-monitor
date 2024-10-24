@@ -6,7 +6,7 @@
 }
 
 :root {
-  --font-base-size: 1em;
+  --font-base-size: 1rem;
   --font-scale-ratio: 1.3;
 
   --color-grey-50: oklch(98.14% 0.001 286.38);
@@ -43,6 +43,9 @@
   --space-xl: calc(2 * var(--space-unit));
   --space-2xl: calc(3.25 * var(--space-unit));
   --space-3xl: calc(5.25 * var(--space-unit));
+
+  --screen--size-md: 55rem;
+  --screen--size-lg: 100rem;
 }
 
 * {
@@ -58,24 +61,32 @@ body {
   font-style: normal;
   color: var(--color-text);
   background-color: var(--color-background);
+  max-width: var(--screen--size-lg);
+  padding: 0 var(--space-md);
 }
 
 header {
-  padding: var(--space-md) var(--space-xl);
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+
+  .logo {
+    width: 3rem;
+  }
+}
+
+main {
+  padding: var(--space-md) 0;
 }
 
 h1 {
   font-size: var(--font-size-2xl);
 }
 
-main {
-  padding: var(--space-md) var(--space-xl);
-}
-
 .charts {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 25rem;
+  grid-template-columns: 1fr;
   gap: var(--space-md);
 }
 
@@ -84,6 +95,44 @@ main {
   flex-direction: column;
   gap: var(--space-sm);
   padding: var(--space-md);
-  background-color: var(--color-grey-100);
+  border: solid 1px var(--color-grey-400);
   border-radius: 10px;
+  height: 25rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+
+  select {
+    font-size: var(--font-size-md);
+    padding: var(--space-xxs) var(--space-xs);
+    border: 1px solid var(--color-grey-300);
+    border-radius: 5px;
+    background-color: var(--color-grey-50);
+    color: var(--color-text);
+    cursor: pointer;
+    transition:
+      border-color 0.3s,
+      box-shadow 0.3s;
+  }
+
+  select:hover {
+    border-color: var(--color-grey-400);
+  }
+
+  select:focus {
+    outline: none;
+    border-color: var(--color-grey-500);
+    box-shadow: 0 0 0 2px var(--color-grey-200);
+  }
+}
+
+@media (min-width: 55rem) {
+  .charts {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

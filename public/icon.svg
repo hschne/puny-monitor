@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg class="logo" version="1.1" viewBox="0 0 215 160" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(2.5 -37.876)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit=".8">
+    <circle cx="30.662" cy="150.82" r="8" stroke-width="4.5" />
+    <circle cx="64.516" cy="101.87" r="8" stroke-width="4.5" />
+    <circle cx="133.07" cy="132.66" r="8" stroke-width="4.5" />
+    <circle cx="179.32" cy="78.569" r="8" stroke-width="4.5" />
+    <path d="m41.112 135.88 13.321-19.699" stroke-width="6" />
+    <path d="m81.341 109.81 34.616 16.25" stroke-width="6" />
+    <path d="m145.39 119.63 22.239-27.032" stroke-width="6" />
+    <rect x="7.5345" y="46.187" width="194.93" height="143.38" ry="7.6132" stroke-width="8" />
+  </g>
+</svg>

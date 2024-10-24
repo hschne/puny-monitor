@@ -19,7 +19,7 @@ module PunyMonitor
     set :database_file, "../config/database.yml"
 
     get "/" do
-      erb :index, locals: { params: }
+      erb :index, locals: { params:, logo: }
     end
 
     get "/up" do
@@ -113,6 +113,13 @@ module PunyMonitor
     end
 
     private
+
+    def logo
+      @logo ||= begin
+        file = File.open("public/icon.svg")
+        file.read
+      end
+    end
 
     def duration
       params[:duration] || "1d"
