@@ -2,15 +2,15 @@
 
 # Puny Monitor
 
-<img alt="logo" src="public/logo-512.png" width="512" height="auto">
+<img alt="logo" src="/public/icon-512.png" width="512" height="auto">
 
 ### A batteries-included monitoring tool for single hosts.
+
+</div>
 
 - Just enough data to be useful 🔍
 - Install in 30 seconds 🏎️
 - Perfect for [Kamal](https://kamal-deploy.org/) and other containerized setups 🐋
-
-</div>
 
 ## Getting Started
 
