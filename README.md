@@ -2,11 +2,13 @@
 
 # Puny Monitor
 
-<img alt="logo" src="/public/icon-512.png" width="512" height="auto">
+<img alt="logo" src="/public/icon-512.png" width="256" height="auto">
 
 ### A batteries-included monitoring tool for single hosts.
 
 </div>
+
+## Features
 
 - Just enough data to be useful 🔍
 - Install in 30 seconds 🏎️
