@@ -1,0 +1,4 @@
+- Tweak graph styling, especially with dark mode
+- Add screenshot to readme
+- Add footer with link to Github
+- Publish as gem, update readme with how to run as gem.
