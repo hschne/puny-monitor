@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg class="logo" version="1.1" viewBox="0 0 215 160" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    g {
+      stroke: oklch(10.91% 0.003 286.03);
+    }
+    @media (prefers-color-scheme: dark) {
+      g {
+        stroke:oklch(98.14% 0.001 286.38);
+      }
+    }
+  </style>
   <g transform="translate(2.5 -37.876)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit=".8">
     <circle cx="30.662" cy="150.82" r="8" stroke-width="4.5" />
     <circle cx="64.516" cy="101.87" r="8" stroke-width="4.5" />

@@ -28,10 +28,8 @@ module PunyMonitor
 
     get "/data/cpu_usage" do
       content_type :json
-      end_time = Time.now
-      start_time = start_time(end_time)
-      cpu_loads = CpuUsage.where(created_at: start_time..end_time)
-                          .group_by_period(group_by, :created_at, series: true)
+      cpu_loads = CpuUsage.where(created_at: start_time..)
+                          .group_by_period(group_by, :created_at, expand_range: true)
                           .average(:used_percent)
                           .transform_values { |value| value&.round(2) }
       cpu_loads.to_json
@@ -40,18 +38,17 @@ module PunyMonitor
     get "/data/cpu_load" do
       content_type :json
       end_time = Time.now
-      start_time = start_time(end_time)
       [
         { name: "1 minute", data: CpuLoad.where(created_at: start_time..end_time)
-                                         .group_by_period(group_by, :created_at, series: true)
+                                         .group_by_period(group_by, :created_at)
                                          .average(:one_minute)
                                          .transform_values { |value| value&.round(2) } },
         { name: "5 minutes", data: CpuLoad.where(created_at: start_time..end_time)
-                                          .group_by_period(group_by, :created_at, series: true)
+                                          .group_by_period(group_by, :created_at)
                                           .average(:five_minutes)
                                           .transform_values { |value| value&.round(2) } },
         { name: "15 minutes", data: CpuLoad.where(created_at: start_time..end_time)
-                                           .group_by_period(group_by, :created_at, series: true)
+                                           .group_by_period(group_by, :created_at)
                                            .average(:fifteen_minutes)
                                            .transform_values { |value| value&.round(2) } }
       ].to_json
@@ -59,10 +56,8 @@ module PunyMonitor
 
     get "/data/memory_usage" do
       content_type :json
-      end_time = Time.now
-      start_time = start_time(end_time)
-      memory_usage = MemoryUsage.where(created_at: start_time..end_time)
-                                .group_by_period(group_by, :created_at, series: true)
+      memory_usage = MemoryUsage.where(created_at: start_time..)
+                                .group_by_period(group_by, :created_at)
                                 .average(:used_percent)
                                 .transform_values { |value| value&.round(2) }
       memory_usage.to_json
@@ -70,10 +65,8 @@ module PunyMonitor
 
     get "/data/filesystem_usage" do
       content_type :json
-      end_time = Time.now
-      start_time = start_time(end_time)
-      filesystem_usage = FilesystemUsage.where(created_at: start_time..end_time)
-                                        .group_by_period(group_by, :created_at, series: true)
+      filesystem_usage = FilesystemUsage.where(created_at: start_time..)
+                                        .group_by_period(group_by, :created_at)
                                         .average(:used_percent)
                                         .transform_values { |value| value&.round(2) }
       filesystem_usage.to_json
@@ -81,15 +74,13 @@ module PunyMonitor
 
     get "/data/disk_io" do
       content_type :json
-      end_time = Time.now
-      start_time = start_time(end_time)
       [
-        { name: "Read MB/s", data: DiskIO.where(created_at: start_time..end_time)
-                                         .group_by_period(group_by, :created_at, series: true)
+        { name: "Read MB/s", data: DiskIO.where(created_at: start_time..)
+                                         .group_by_period(group_by, :created_at)
                                          .average(:read_mb_per_sec)
                                          .transform_values { |value| value&.round(2) } },
-        { name: "Write MB/s", data: DiskIO.where(created_at: start_time..end_time)
-                                          .group_by_period(group_by, :created_at, series: true)
+        { name: "Write MB/s", data: DiskIO.where(created_at: start_time..)
+                                          .group_by_period(group_by, :created_at)
                                           .average(:write_mb_per_sec)
                                           .transform_values { |value| value&.round(2) } }
       ].to_json
@@ -97,16 +88,14 @@ module PunyMonitor
 
     get "/data/bandwidth" do
       content_type :json
-      end_time = Time.now
-      start_time = start_time(end_time)
       group_by = group_by()
       [
-        { name: "Incoming Mbps", data: Bandwidth.where(created_at: start_time..end_time)
-                                                .group_by_period(group_by, :created_at, series: true)
+        { name: "Incoming Mbps", data: Bandwidth.where(created_at: start_time..)
+                                                .group_by_period(group_by, :created_at)
                                                 .average(:incoming_mbps)
                                                 .transform_values { |value| value&.round(2) } },
-        { name: "Outgoing Mbps", data: Bandwidth.where(created_at: start_time..end_time)
-                                                .group_by_period(group_by, :created_at, series: true)
+        { name: "Outgoing Mbps", data: Bandwidth.where(created_at: start_time..)
+                                                .group_by_period(group_by, :created_at)
                                                 .average(:outgoing_mbps)
                                                 .transform_values { |value| value&.round(2) } }
       ].to_json
@@ -125,19 +114,19 @@ module PunyMonitor
       params[:duration] || "1d"
     end
 
-    def start_time(end_time)
+    def start_time
       case duration
-      when "1h" then end_time - 1.hour
-      when "3d" then end_time - 3.days
-      when "1w" then end_time - 1.week
-      when "1m" then end_time - 1.month
-      else end_time - 1.day
+      when "1h" then 1.hour.ago
+      when "3d" then 3.days.ago
+      when "1w" then 1.week.ago
+      when "1m" then 1.month.ago
+      else 1.day.ago
       end
     end
 
     def group_by
       case duration
-      when "1h" then :minute
+      when "1h", "1d" then :minute
       else :hour
       end
     end

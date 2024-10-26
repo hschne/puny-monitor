@@ -85,6 +85,14 @@ h1 {
   font-size: var(--font-size-2xl);
 }
 
+a:visited {
+  color: var(--color-link-hover);
+}
+
+footer {
+  padding: var(--space-sm) 0;
+}
+
 .charts {
   display: grid;
   grid-template-columns: 1fr;
@@ -98,7 +106,7 @@ h1 {
   padding: var(--space-md);
   border: solid 1px var(--color-border);
   border-radius: 10px;
-  height: 25rem;
+  height: 20rem;
 }
 
 .controls {
@@ -135,6 +143,10 @@ h1 {
 @media (min-width: 55rem) {
   .charts {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tile {
+    height: 25rem;
   }
 }
 

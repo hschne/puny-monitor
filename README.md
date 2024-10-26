@@ -8,11 +8,16 @@
 
 </div>
 
+<p align="center">
+  <img alt="Screenshot of Puny Monitor" src="screenshot.png" width="90%">
+</p>
+
 ## Features
 
 - Just enough data to be useful 🔍
 - Install in 30 seconds 🏎️
 - Perfect for [Kamal](https://kamal-deploy.org/) and other containerized setups 🐋
+
 
 ## Getting Started
 
@@ -26,7 +31,7 @@ docker run --rm \
   hschne/puny-monitor:latest
 ```
 
-Visit [localhost:4567](http://localhost:4567) to check your system data. To see how to deploy Puny Monitor in a production environment see [Deployment]
+Visit [localhost:4567](http://localhost:4567) to check your system data. To see how to deploy Puny Monitor in a production environment see [Deployment].
 
 ## Deployment
 
