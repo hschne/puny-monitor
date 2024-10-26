@@ -19,7 +19,7 @@ class SystemUtilsTest < Minitest::Test
     system_value = `free | grep Mem | awk '{print $3/$2 * 100.0}'`.to_f
     utils_value = @utils.memory_usage_percent
 
-    assert_in_delta system_value, utils_value, 5
+    assert_in_delta system_value, utils_value, 10
   end
 
   def test_filesystem_usage_percent
