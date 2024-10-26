@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rackup -p 4567
+

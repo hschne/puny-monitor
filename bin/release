@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rake docker:build
+rake docker:push
+
