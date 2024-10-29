@@ -4,6 +4,7 @@ PATH
     puny-monitor (0.1.0)
       chartkick (~> 5.1)
       groupdate (~> 6.4)
+      rackup (~> 2.1)
       rufus-scheduler (~> 3.9)
       sinatra (~> 4.0)
       sinatra-activerecord (~> 2.0)
@@ -154,7 +155,6 @@ DEPENDENCIES
   foreman (~> 0.88.1)
   minitest (~> 5.16)
   puny-monitor!
-  rackup (~> 2.1)
   rake (~> 13.0)
   rubocop (~> 1.21)
   rubocop-minitest (~> 0.34.5)
