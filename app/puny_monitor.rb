@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "sinatra/contrib"
 require_relative "../lib/system_utils"
 
 module PunyMonitor

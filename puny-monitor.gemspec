@@ -25,12 +25,27 @@ Gem::Specification.new do |spec|
   spec.files = IO.popen(%w[git ls-files -z], chdir: __dir__, err: IO::NULL) do |ls|
     ls.readlines("\x0", chomp: true).reject do |f|
       (f == gemspec) ||
-        f.start_with?(*%w[bin/ test/ spec/ features/ .git .github appveyor Gemfile])
+        f.start_with?(*%w[bin/ test/ .git .github .dockerignore .irbrc
+                          .rubocop.yml
+                          CHANGELOG.md
+                          CODE_OF_CONDUCT.md
+                          Dockerfile
+                          Gemfile
+                          screenshot.png])
     end
   end
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = %w[lib]
+
+  spec.add_dependency("chartkick", "~> 5.1")
+  spec.add_dependency("groupdate", "~> 6.4")
+  spec.add_dependency("rufus-scheduler", "~> 3.9")
+  spec.add_dependency("sinatra", "~> 4.0")
+  spec.add_dependency("sinatra-activerecord", "~> 2.0")
+  spec.add_dependency("sinatra-contrib", "~> 4.0")
+  spec.add_dependency("sqlite3", "~> 2.0")
+  spec.add_dependency("sys-filesystem", "~> 1.4")
 
   spec.metadata["rubygems_mfa_required"] = "true"
 end

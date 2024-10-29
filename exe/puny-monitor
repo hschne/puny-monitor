@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 
-rackup -p 4567
+# frozen_string_literal: true
 
+require "bundler/setup"
+require "puny_monitor"
+
+PunyMonitor::App.run!
