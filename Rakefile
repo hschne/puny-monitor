@@ -22,7 +22,7 @@ if PunyMonitor::App.development?
 
     desc "Push Puny Monitor Docker image"
     task :push do
-      sh "docker push hschne/puny-monitor:latest"
+      sh "docker push -a hschne/puny-monitor:latest"
     end
 
     desc "Run Docker container"
