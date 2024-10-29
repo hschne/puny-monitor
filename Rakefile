@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require "bundler/gem_tasks"
+
 require_relative "config/environment"
 
 require "sinatra/activerecord/rake"
 
 if PunyMonitor::App.development?
+
   require "minitest/test_task"
   Minitest::TestTask.create
 
