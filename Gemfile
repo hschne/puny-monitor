@@ -16,5 +16,6 @@ group :development do
 end
 
 group :test do
+  gem "database_cleaner-active_record", "~> 2.2"
   gem "minitest", "~> 5.16"
 end

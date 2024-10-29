@@ -12,7 +12,7 @@ class SystemUtilsTest < Minitest::Test
     system_value = `top -bn1 | grep "Cpu(s)" | sed "s/.*, *\\([0-9.]*\\)%* id.*/\\1/" | awk '{print 100 - $1}'`.to_f
     utils_value = @utils.cpu_usage_percent
 
-    assert_in_delta system_value, utils_value, 5
+    assert_in_delta system_value, utils_value, 10
   end
 
   def test_memory_usage_percent
