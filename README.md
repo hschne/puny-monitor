@@ -61,6 +61,16 @@ Then run `kamal-proxy` to point to Puny Monitor:
 kamal add-puny-monitor-to-proxy
 ```
 
+### Other Deployment Options
+
+You may install the Puny Monitor gem and run the application from the command line. 
+
+```bash
+gem install puny-monitor
+# Run puny monitor on port 4567
+puny-monitor
+```
+
 ## Why Puny Monitor? 
 
 Puny Monitor aims to be a dead-simple, no-frills monitoring solution for single hosts. It provides enough information to be useful (and not a bit more) and avoids the complications and overhead that come with existing solutions. 
