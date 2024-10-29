@@ -9,6 +9,8 @@ module PunyMonitor
     configure do
       register Sinatra::ActiveRecordExtension
       @scheduler = Rufus::Scheduler.new
+      @scheduler.every("5s") { Scheduler.collect_data }
+      @scheduler.every("1h") { Scheduler.cleanup_old_data }
     end
 
     configure :development do
@@ -85,14 +87,6 @@ module PunyMonitor
       when "1h", "1d" then :minute
       else :hour
       end
-    end
-
-    @scheduler.every "5s" do
-      Scheduler.collect_data
-    end
-
-    @scheduler.every "1h" do
-      Scheduler.cleanup_old_data
     end
   end
 end

@@ -12,6 +12,6 @@ class FilesystemUsageTest < ActiveSupport::TestCase
     result = FilesystemUsage.average_usage(start_time, group_by)
 
     assert_kind_of Hash, result
-    assert_equal 60.0, result.values.compact.first
+    assert_in_delta(60.0, result.values.compact.first)
   end
 end

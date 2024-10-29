@@ -12,6 +12,6 @@ class MemoryUsageTest < ActiveSupport::TestCase
     result = MemoryUsage.average_usage(start_time, group_by)
 
     assert_kind_of Hash, result
-    assert_equal 75.0, result.values.compact.first
+    assert_in_delta(75.0, result.values.compact.first)
   end
 end

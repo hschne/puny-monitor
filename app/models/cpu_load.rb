@@ -9,8 +9,6 @@ class CpuLoad < ActiveRecord::Base
     ]
   end
 
-  private
-
   def self.average_for_period(column, start_time, end_time, group_by)
     where(created_at: start_time..end_time)
       .group_by_period(group_by, :created_at)

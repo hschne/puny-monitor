@@ -14,7 +14,7 @@ require File.expand_path("../config/environment", __dir__)
 load File.expand_path("../db/schema.rb", __dir__)
 
 # Require all the model files
-Dir[File.expand_path("../app/models/*.rb", __dir__)].sort.each { |file| require file }
+Dir[File.expand_path("../app/models/*.rb", __dir__)].each { |file| require file }
 
 # Configure Database Cleaner
 DatabaseCleaner.strategy = :transaction

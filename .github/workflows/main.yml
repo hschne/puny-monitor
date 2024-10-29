@@ -14,14 +14,18 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - '3.3.4'
+          - "3.3.4"
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - name: Run the default task
-      run: bundle exec rake
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Prepare test database
+        run: RACK_ENV=test bundle exec rake db:prepare
+      - name: Run Tests
+        run: bundle exec rake test
+      - name: Run Rubocop
+        run: bundle exec rake rubocop

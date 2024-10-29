@@ -10,7 +10,7 @@ class DiskIOTest < ActiveSupport::TestCase
     result = DiskIO.average_io(start_time, group_by)
 
     assert_equal 2, result.length
-    assert_equal ["Read MB/s", "Write MB/s"], result.map { |r| r[:name] }
+    assert_equal(["Read MB/s", "Write MB/s"], result.map { |r| r[:name] })
     assert_kind_of Hash, result.first[:data]
   end
 
@@ -23,6 +23,6 @@ class DiskIOTest < ActiveSupport::TestCase
     result = DiskIO.send(:average_for_period, :read_mb_per_sec, start_time, group_by)
 
     assert_kind_of Hash, result
-    assert_equal 20.0, result.values.compact.first
+    assert_in_delta(20.0, result.values.compact.first)
   end
 end

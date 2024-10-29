@@ -11,7 +11,7 @@ class CpuLoadTest < ActiveSupport::TestCase
     result = CpuLoad.average_load(start_time, end_time, group_by)
 
     assert_equal 3, result.length
-    assert_equal ["1 minute", "5 minutes", "15 minutes"], result.map { |r| r[:name] }
+    assert_equal(["1 minute", "5 minutes", "15 minutes"], result.map { |r| r[:name] })
     assert_kind_of Hash, result.first[:data]
   end
 
@@ -25,6 +25,6 @@ class CpuLoadTest < ActiveSupport::TestCase
     result = CpuLoad.send(:average_for_period, :one_minute, start_time, end_time, group_by)
 
     assert_kind_of Hash, result
-    assert_equal 1.0, result.values.compact.first
+    assert_in_delta(1.0, result.values.compact.first)
   end
 end
