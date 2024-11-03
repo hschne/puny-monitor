@@ -14,6 +14,16 @@ if PunyMonitor::App.development?
   require "rubocop/rake_task"
   RuboCop::RakeTask.new
 
+  desc "Copy Chartkick assets to public/javascript"
+  task :assets do
+    require "fileutils"
+    chartkick_path = Gem.loaded_specs["chartkick"].full_gem_path
+    source_dir = File.join(chartkick_path, "vendor", "assets", "javascripts")
+    dest_dir = File.join(Dir.pwd, "public", "javascript")
+
+    FileUtils.cp_r(Dir[File.join(source_dir, "*")], dest_dir)
+  end
+
   namespace :docker do
     desc "Build Puny Monitor Docker image"
     task :build do
