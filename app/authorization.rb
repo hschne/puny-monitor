@@ -5,17 +5,17 @@ module PunyMonitor
     def self.included(base)
       return unless authorize?
 
-      base.use Rack::Auth::Basic, 'Puny Monitor' do |username, password|
+      base.use Rack::Auth::Basic, "Puny Monitor" do |username, password|
         username == self.username && password == self.password
       end
     end
 
     def self.username
-      @username ||= ENV.fetch('PUNY_USERNAME', nil)
+      @username ||= ENV.fetch("PUNY_USERNAME", nil)
     end
 
     def self.password
-      @password ||= ENV.fetch('PUNY_PASSWORD', nil)
+      @password ||= ENV.fetch("PUNY_PASSWORD", nil)
     end
 
     def self.authorize?

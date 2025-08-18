@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../lib/system_utils'
+require_relative "../lib/system_utils"
 
 module PunyMonitor
   class Scheduler
@@ -9,8 +9,8 @@ module PunyMonitor
         CpuUsage.create(used_percent: SystemUtils.cpu_usage_percent)
         cpu_load_averages = SystemUtils.cpu_load_average
         CpuLoad.create(one_minute: cpu_load_averages[0],
-                       five_minutes: cpu_load_averages[1],
-                       fifteen_minutes: cpu_load_averages[2])
+          five_minutes: cpu_load_averages[1],
+          fifteen_minutes: cpu_load_averages[2])
         MemoryUsage.create(used_percent: SystemUtils.memory_usage_percent)
         FilesystemUsage.create(used_percent: SystemUtils.filesystem_usage_percent)
 
@@ -24,7 +24,7 @@ module PunyMonitor
       def cleanup_old_data
         one_month_ago = 1.month.ago
         [CpuUsage, CpuLoad, MemoryUsage, FilesystemUsage, DiskIO, Bandwidth].each do |model|
-          model.where('created_at < ?', one_month_ago).delete_all
+          model.where("created_at < ?", one_month_ago).delete_all
         end
       end
     end
