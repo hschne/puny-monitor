@@ -13,9 +13,9 @@ class SystemUtils
       idle = current_cpu[:idle] + current_cpu[:iowait]
 
       prev_non_idle = prev_cpu[:user] + prev_cpu[:nice] + prev_cpu[:system] +
-                      prev_cpu[:irq] + prev_cpu[:softirq] + prev_cpu[:steal]
+        prev_cpu[:irq] + prev_cpu[:softirq] + prev_cpu[:steal]
       non_idle = current_cpu[:user] + current_cpu[:nice] + current_cpu[:system] +
-                 current_cpu[:irq] + current_cpu[:softirq] + current_cpu[:steal]
+        current_cpu[:irq] + current_cpu[:softirq] + current_cpu[:steal]
 
       prev_total = prev_idle + prev_non_idle
       total = idle + non_idle
@@ -29,8 +29,8 @@ class SystemUtils
 
     def cpu_load_average
       File.read("#{proc_path}/loadavg").split.take(3)
-          .map(&:to_f)
-          .map { |value| value.round(2) }
+        .map(&:to_f)
+        .map { |value| value.round(2) }
     end
 
     def memory_usage_percent
@@ -111,16 +111,16 @@ class SystemUtils
 
     def read_disk_stats
       primary_disk = File.read("#{proc_path}/partitions")
-                         .lines
-                         .drop(2)
-                         .first
-                         .split
-                         .last
+        .lines
+        .drop(2)
+        .first
+        .split
+        .last
 
       stats = File.read("#{proc_path}/diskstats")
-                  .lines
-                  .map(&:split)
-                  .find { |line| line[2] == primary_disk }
+        .lines
+        .map(&:split)
+        .find { |line| line[2] == primary_disk }
 
       {
         read_sectors: stats[5].to_i,
@@ -130,14 +130,14 @@ class SystemUtils
 
     def read_network_stats
       primary_interface = File.read("#{proc_path}/net/route")
-                              .lines
-                              .drop(1)
-                              .find { |line| line.split[1] == "00000000" }
-                              &.split&.first
+        .lines
+        .drop(1)
+        .find { |line| line.split[1] == "00000000" }
+        &.split&.first
       stats = File.read("#{proc_path}/net/dev")
-                  .lines
-                  .map(&:split)
-                  .find { |line| line[0].chomp(":") == primary_interface }
+        .lines
+        .map(&:split)
+        .find { |line| line[0].chomp(":") == primary_interface }
 
       {
         rx_bytes: stats[1].to_i,

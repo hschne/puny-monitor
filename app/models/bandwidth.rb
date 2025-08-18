@@ -4,8 +4,8 @@ class Bandwidth < ActiveRecord::Base
   class << self
     def average_usage(start_time, group_by)
       [
-        { name: "Incoming Mbps", data: average_for_period(:incoming_mbps, start_time, group_by) },
-        { name: "Outgoing Mbps", data: average_for_period(:outgoing_mbps, start_time, group_by) }
+        {name: "Incoming Mbps", data: average_for_period(:incoming_mbps, start_time, group_by)},
+        {name: "Outgoing Mbps", data: average_for_period(:outgoing_mbps, start_time, group_by)}
       ]
     end
 

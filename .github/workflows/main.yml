@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - "3.3.4"
+          - "3.4.4"
 
     steps:
       - uses: actions/checkout@v4
@@ -28,4 +28,4 @@ jobs:
       - name: Run Tests
         run: bundle exec rake test
       - name: Run Rubocop
-        run: bundle exec rake rubocop
+        run: bundle exec rake standard

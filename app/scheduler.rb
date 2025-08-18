@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../lib/system_utils"
-require "debug"
+require_relative '../lib/system_utils'
 
 module PunyMonitor
   class Scheduler
@@ -25,7 +24,7 @@ module PunyMonitor
       def cleanup_old_data
         one_month_ago = 1.month.ago
         [CpuUsage, CpuLoad, MemoryUsage, FilesystemUsage, DiskIO, Bandwidth].each do |model|
-          model.where("created_at < ?", one_month_ago).delete_all
+          model.where('created_at < ?', one_month_ago).delete_all
         end
       end
     end

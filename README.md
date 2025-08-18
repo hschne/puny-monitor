@@ -33,6 +33,20 @@ docker run --rm \
 
 Visit [localhost:4567](http://localhost:4567) to check your system data. To see how to deploy Puny Monitor in a production environment see [Deployment].
 
+## Authentication
+
+Puny monitor supports Basic HTTP Authentication. To enable authentication set both the `PUNY_USERNAME` and `PUNY_PASSWORD` environment variables. For example, using with `docker run`:
+
+```
+docker run --rm \
+  -v=/:/host:ro,rslave -v=puny-data:/puny-monitor/db \
+  -e HOST_PATH=/host \
+  -e PUNY_USERNAME=admin \
+  -e PUNY_PASSWORD=secret \
+  -p 4567:4567 \
+  hschne/puny-monitor:latest
+```
+
 ## Deployment
 
 Puny Monitor was made with [Kamal](https://kamal-deploy.org/) and [Ruby on Rails](https://rubyonrails.org/) in mind. It is recommended that you deploy it as an accessory to your application. Add the following lines to `config/deploy.yml`:
@@ -81,7 +95,14 @@ To put it simply, Puny Monitor replicates [Digital Ocean's Monitoring](https://w
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`.  To run Puny Monitor locally use 
+```
+bundle exec rackup
+```
+
+Alternatively, you may use the various docker helpers defined in the [Rakefile].
+
+To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 

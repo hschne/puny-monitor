@@ -4,8 +4,8 @@ class DiskIO < ActiveRecord::Base
   class << self
     def average_io(start_time, group_by)
       [
-        { name: "Read MB/s", data: average_for_period(:read_mb_per_sec, start_time, group_by) },
-        { name: "Write MB/s", data: average_for_period(:write_mb_per_sec, start_time, group_by) }
+        {name: "Read MB/s", data: average_for_period(:read_mb_per_sec, start_time, group_by)},
+        {name: "Write MB/s", data: average_for_period(:write_mb_per_sec, start_time, group_by)}
       ]
     end
 
