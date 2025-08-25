@@ -14,15 +14,14 @@ class DiskIOTest < ActiveSupport::TestCase
     assert_kind_of Hash, result.first[:data]
   end
 
-  test "average_for_period returns correct data" do
-    start_time = 1.day.ago
-    group_by = :hour
+  test "average_io consolidates read and write metrics" do
+    DiskIO.create(read_mb_per_sec: 20, write_mb_per_sec: 10, created_at: 12.hours.ago)
 
-    DiskIO.create(read_mb_per_sec: 20.0, write_mb_per_sec: 10.0, created_at: 12.hours.ago)
+    result = DiskIO.average_io(1.day.ago, :hour)
+    read_data = result.find { |r| r[:name] == "Read MB/s" }[:data]
+    write_data = result.find { |r| r[:name] == "Write MB/s" }[:data]
 
-    result = DiskIO.send(:average_for_period, :read_mb_per_sec, start_time, group_by)
-
-    assert_kind_of Hash, result
-    assert_in_delta(20.0, result.values.compact.first)
+    assert_equal 20, read_data.values.compact.first
+    assert_equal 10, write_data.values.compact.first
   end
 end

@@ -22,6 +22,7 @@ rake default           # Run both tests and linter
 
 ### Development Server
 ```bash
+bundle exec rackup     # Start development server (default port 9292)
 puny-monitor           # Start the server on port 4567
 bin/console            # Interactive Ruby console
 ```
@@ -42,7 +43,7 @@ rake assets           # Copy Chartkick JavaScript assets to public/
 
 ### Core Components
 
-**Sinatra App** (`app/puny_monitor.rb`): Main web application with basic auth, JSON API endpoints for metrics data, and time-based data aggregation.
+**Sinatra App** (`app/puny_monitor.rb`): Main web application with optional basic auth, JSON API endpoints for metrics data, and time-based data aggregation. Auth is controlled by `PUNY_USERNAME` and `PUNY_PASSWORD` environment variables.
 
 **Scheduler** (`app/scheduler.rb`): Background job system using Rufus Scheduler that collects system metrics every 5 seconds and cleans up old data hourly.
 
@@ -73,6 +74,17 @@ All metric models follow the same pattern with `created_at` timestamps and index
 ## Configuration
 
 - **Database**: Uses SQLite3 with automatic migration support
-- **Authentication**: Basic auth with credentials pulled from environment variables
-- **Monitoring Intervals**: 5-second data collection
+- **Authentication**: Optional basic auth with `PUNY_USERNAME` and `PUNY_PASSWORD` environment variables
+- **Host Path**: Uses `ROOT_PATH` environment variable for Docker containers to mount host `/proc` filesystem
+- **Monitoring Intervals**: 5-second data collection, 1-hour cleanup cycle
 - **Data Retention**: 1 month automatic cleanup
+
+## Testing
+
+Run specific test files:
+```bash
+ruby test/models/cpu_usage_test.rb      # Test individual model
+ruby test/system_utils_test.rb          # Test core system utilities
+```
+
+All tests use Minitest with DatabaseCleaner for transaction-based test isolation.

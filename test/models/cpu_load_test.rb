@@ -15,16 +15,17 @@ class CpuLoadTest < ActiveSupport::TestCase
     assert_kind_of Hash, result.first[:data]
   end
 
-  test "average_for_period returns correct data" do
-    start_time = 1.day.ago
-    end_time = Time.now
-    group_by = :hour
+  test "average_load consolidates all three metrics in one query" do
+    CpuLoad.create(one_minute: 1, five_minutes: 5, fifteen_minutes: 15, created_at: 1.hour.ago)
 
-    CpuLoad.create(one_minute: 1.0, five_minutes: 2.0, fifteen_minutes: 3.0, created_at: 12.hours.ago)
+    result = CpuLoad.average_load(1.day.ago, Time.now, :hour)
 
-    result = CpuLoad.send(:average_for_period, :one_minute, start_time, end_time, group_by)
+    one_min_data = result.find { |r| r[:name] == "1 minute" }[:data]
+    five_min_data = result.find { |r| r[:name] == "5 minutes" }[:data]
+    fifteen_min_data = result.find { |r| r[:name] == "15 minutes" }[:data]
 
-    assert_kind_of Hash, result
-    assert_in_delta(1.0, result.values.compact.first)
+    assert_equal 1, one_min_data.values.compact.first
+    assert_equal 5, five_min_data.values.compact.first
+    assert_equal 15, fifteen_min_data.values.compact.first
   end
 end
