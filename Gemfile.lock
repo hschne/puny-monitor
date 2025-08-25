@@ -3,7 +3,6 @@ PATH
   specs:
     puny-monitor (0.2.0)
       chartkick (~> 5.1)
-      groupdate (~> 6.4)
       puma (~> 6.6)
       rackup (~> 2.1)
       rufus-scheduler (~> 3.9)
@@ -61,8 +60,6 @@ GEM
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
-    groupdate (6.7.0)
-      activesupport (>= 7.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.1)

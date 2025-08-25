@@ -23,6 +23,11 @@ if PunyMonitor::App.development?
     FileUtils.cp_r(Dir[File.join(source_dir, "*")], dest_dir)
   end
 
+  desc "Load seed data"
+  task :seed do
+    load "db/seeds.rb"
+  end
+
   namespace :docker do
     desc "Build Puny Monitor Docker image"
     task :build do

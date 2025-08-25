@@ -12,7 +12,7 @@ module PunyMonitor
     configure do
       register Sinatra::ActiveRecordExtension
       @scheduler = Rufus::Scheduler.new
-      @scheduler.every("5s") { Scheduler.collect_data }
+      @scheduler.every("10s") { Scheduler.collect_data }
       @scheduler.every("1h") { Scheduler.cleanup_old_data }
     end
 
@@ -34,32 +34,32 @@ module PunyMonitor
 
     get "/data/cpu_usage" do
       content_type :json
-      CpuUsage.average_usage(start_time, group_by).to_json
+      CpuUsage.average_usage(start_time, interval_minutes).to_json
     end
 
     get "/data/cpu_load" do
       content_type :json
-      CpuLoad.average_load(start_time, Time.now, group_by).to_json
+      CpuLoad.average_load(start_time, Time.now, interval_minutes).to_json
     end
 
     get "/data/memory_usage" do
       content_type :json
-      MemoryUsage.average_usage(start_time, group_by).to_json
+      MemoryUsage.average_usage(start_time, interval_minutes).to_json
     end
 
     get "/data/filesystem_usage" do
       content_type :json
-      FilesystemUsage.average_usage(start_time, group_by).to_json
+      FilesystemUsage.average_usage(start_time, interval_minutes).to_json
     end
 
     get "/data/disk_io" do
       content_type :json
-      DiskIO.average_io(start_time, group_by).to_json
+      DiskIO.average_io(start_time, interval_minutes).to_json
     end
 
     get "/data/bandwidth" do
       content_type :json
-      Bandwidth.average_usage(start_time, group_by).to_json
+      Bandwidth.average_usage(start_time, interval_minutes).to_json
     end
 
     private
@@ -85,11 +85,8 @@ module PunyMonitor
       end
     end
 
-    def group_by
-      case duration
-      when "1h", "1d" then :minute
-      else :hour
-      end
+    def interval_minutes
+      (params[:interval] || "15").to_i
     end
   end
 end

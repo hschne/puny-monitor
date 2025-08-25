@@ -83,8 +83,12 @@ All metric models follow the same pattern with `created_at` timestamps and index
 
 Run specific test files:
 ```bash
-ruby test/models/cpu_usage_test.rb      # Test individual model
-ruby test/system_utils_test.rb          # Test core system utilities
+rake test test/models/cpu_usage_test.rb      # Test individual model
+rake test test/system_utils_test.rb          # Test core system utilities
 ```
 
 All tests use Minitest with DatabaseCleaner for transaction-based test isolation.
+
+## Code Style
+
+- **Comments**: Avoid self-explanatory comments, only add comments for complex, hard-to-understand code

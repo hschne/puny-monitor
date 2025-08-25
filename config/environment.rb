@@ -8,7 +8,6 @@ Bundler.require(:default, ENV.fetch("RACK_ENV", nil))
 require "sinatra/contrib"
 require "sinatra/activerecord"
 require "rufus-scheduler"
-require "groupdate"
 require "chartkick"
 require "sqlite3"
 require "sys-filesystem"
