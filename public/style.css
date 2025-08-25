@@ -116,6 +116,20 @@ footer {
   gap: var(--space-md);
   margin-bottom: var(--space-sm);
 
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
   select {
     font-size: var(--font-size-md);
     padding: var(--space-xxs) var(--space-xs);

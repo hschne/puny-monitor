@@ -1,22 +1,31 @@
 <section class="controls">
-  <form action="/" method="get">
-    <select name="duration" onchange="this.form.submit()">
-      <option value="1h" <%= params[:duration] == '1h' ? 'selected' : '' %>>1 Hour</option>
-      <option
-        value="1d"
-        <%= params[:duration] == '1d' || params[:duration].nil? ? 'selected' : '' %>
-      >1 Day</option>
-      <option value="3d" <%= params[:duration] == '3d' ? 'selected' : '' %>>3 Days</option>
-      <option value="1w" <%= params[:duration] == '1w' ? 'selected' : '' %>>1 Week</option>
-      <option value="1m" <%= params[:duration] == '1m' ? 'selected' : '' %>>1 Month</option>
-    </select>
-    <select name="interval" onchange="this.form.submit()">
-      <option value="5" <%= params[:interval] == '5' ? 'selected' : '' %>>5 minutes</option>
-      <option value="15" <%= params[:interval] == '15' || params[:interval].nil? ? 'selected' : '' %>>15 minutes</option>
-      <option value="60" <%= params[:interval] == '60' ? 'selected' : '' %>>1 hour</option>
-      <option value="120" <%= params[:interval] == '120' ? 'selected' : '' %>>2 hours</option>
-      <option value="1440" <%= params[:interval] == '1440' ? 'selected' : '' %>>1 day</option>
-    </select>
+  <form class="controls__form" action="/" method="get">
+
+    <label for="duration">Duration
+      <select id="duration" name="duration" onchange="this.form.submit()">
+        <option value="1h" <%= params[:duration] == '1h' ? 'selected' : '' %>>1 Hour</option>
+        <option
+          value="1d"
+          <%= params[:duration] == '1d' || params[:duration].nil? ? 'selected' : '' %>
+        >1 Day</option>
+        <option value="3d" <%= params[:duration] == '3d' ? 'selected' : '' %>>3 Days</option>
+        <option value="1w" <%= params[:duration] == '1w' ? 'selected' : '' %>>1 Week</option>
+        <option value="1m" <%= params[:duration] == '1m' ? 'selected' : '' %>>1 Month</option>
+      </select>
+    </label>
+
+    <label for="interval">Aggregation Interval
+      <select id="interval" name="interval" onchange="this.form.submit()">
+        <option value="5" <%= params[:interval] == '5' ? 'selected' : '' %>>5 minutes</option>
+        <option
+          value="15"
+          <%= params[:interval] == '15' || params[:interval].nil? ? 'selected' : '' %>
+        >15 minutes</option>
+        <option value="60" <%= params[:interval] == '60' ? 'selected' : '' %>>1 hour</option>
+        <option value="120" <%= params[:interval] == '120' ? 'selected' : '' %>>2 hours</option>
+        <option value="1440" <%= params[:interval] == '1440' ? 'selected' : '' %>>1 day</option>
+      </select>
+    </label>
   </form>
 </section>
 
@@ -24,7 +33,7 @@
 
   <div class="tile">
     <h2>CPU Usage</h2>
-    <%= area_chart "/data/cpu_usage?duration=#{params[:duration] || "1d"}&interval=#{params[:interval] || "15"}",
+    <%= area_chart chart_url("/data/cpu_usage"),
     ytitle: "CPU Usage (%)",
     min: 0,
     max: 100,
@@ -38,7 +47,7 @@
 
   <div class="tile">
     <h2>CPU Load</h2>
-    <%= line_chart "/data/cpu_load?duration=#{params[:duration] || "1d"}&interval=#{params[:interval] || "15"}",
+    <%= line_chart chart_url("/data/cpu_load"),
     ytitle: "Load Average",
     library: {
       title: {
@@ -50,7 +59,7 @@
 
   <div class="tile">
     <h2>Memory Usage</h2>
-    <%= area_chart "/data/memory_usage?duration=#{params[:duration] || "1d"}&interval=#{params[:interval] || "15"}",
+    <%= area_chart chart_url("/data/memory_usage"),
     ytitle: "Memory Usage (%)",
     min: 0,
     max: 100,
@@ -64,7 +73,7 @@
 
   <div class="tile">
     <h2>Filesystem Usage</h2>
-    <%= area_chart "/data/filesystem_usage?duration=#{params[:duration] || "1d"}&interval=#{params[:interval] || "15"}",
+    <%= area_chart chart_url("/data/filesystem_usage"),
     ytitle: "Used Space (%)",
     min: 0,
     max: 100,
@@ -78,7 +87,7 @@
 
   <div class="tile">
     <h2>Disk I/O</h2>
-    <%= area_chart "/data/disk_io?duration=#{params[:duration] || "1d"}&interval=#{params[:interval] || "15"}",
+    <%= area_chart chart_url("/data/disk_io"),
     ytitle: "MB/s",
     library: {
       title: {
@@ -90,7 +99,7 @@
 
   <div class="tile">
     <h2>Bandwidth</h2>
-    <%= area_chart "/data/bandwidth?duration=#{params[:duration] || "1d"}&interval=#{params[:interval] || "15"}",
+    <%= area_chart chart_url("/data/bandwidth"),
     ytitle: "Bandwidth (Mbps)",
     library: {
       title: {

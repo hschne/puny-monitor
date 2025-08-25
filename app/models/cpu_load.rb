@@ -5,18 +5,19 @@ class CpuLoad < ApplicationModel
     data = where(created_at: start_time..end_time)
       .group_by_time(minutes)
       .pluck(
-        Arel.sql("#{group_format(minutes)} as period"),
+        Arel.sql("datetime(#{group_format(minutes)}, 'unixepoch') as period"),
         Arel.sql("ROUND(AVG(one_minute), 2) as avg_one"),
         Arel.sql("ROUND(AVG(five_minutes), 2) as avg_five"),
         Arel.sql("ROUND(AVG(fifteen_minutes), 2) as avg_fifteen")
-      ).to_h { |period, one, five, fifteen|
-        [period, {one: one, five: five, fifteen: fifteen}]
-      }
+      )
 
+    one = data.to_h { |period, one, _, _| [period, one] }
+    five = data.to_h { |period, _, five, _| [period, five] }
+    fifteen = data.to_h { |period, _, _, fifteen| [period, fifteen] }
     [
-      {name: "1 minute", data: data.transform_values { |v| v[:one] }},
-      {name: "5 minutes", data: data.transform_values { |v| v[:five] }},
-      {name: "15 minutes", data: data.transform_values { |v| v[:fifteen] }}
+      {name: "1 minute", data: one},
+      {name: "5 minutes", data: five},
+      {name: "15 minutes", data: fifteen}
     ]
   end
 end

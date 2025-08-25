@@ -88,5 +88,13 @@ module PunyMonitor
     def interval_minutes
       (params[:interval] || "15").to_i
     end
+
+    def chart_url(endpoint)
+      query_params = []
+      query_params << "duration=#{params[:duration]}" if params[:duration]
+      query_params << "interval=#{params[:interval]}" if params[:interval]
+      query_string = query_params.empty? ? "" : "?#{query_params.join("&")}"
+      "#{endpoint}#{query_string}"
+    end
   end
 end
