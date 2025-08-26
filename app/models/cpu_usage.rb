@@ -7,6 +7,6 @@ class CpuUsage < ApplicationModel
       .pluck(
         Arel.sql("datetime(#{group_format(minutes)}, 'unixepoch') as period"),
         Arel.sql("ROUND(AVG(used_percent), 2) as avg_usage")
-      ).to_h
+      )
   end
 end

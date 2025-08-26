@@ -34,32 +34,32 @@ module PunyMonitor
 
     get "/data/cpu_usage" do
       content_type :json
-      CpuUsage.average_usage(start_time, interval_minutes).to_json
+      CpuUsage.average_usage(start_time, interval).to_json
     end
 
     get "/data/cpu_load" do
       content_type :json
-      CpuLoad.average_load(start_time, Time.now, interval_minutes).to_json
+      CpuLoad.average_load(start_time, interval).to_json
     end
 
     get "/data/memory_usage" do
       content_type :json
-      MemoryUsage.average_usage(start_time, interval_minutes).to_json
+      MemoryUsage.average_usage(start_time, interval).to_json
     end
 
     get "/data/filesystem_usage" do
       content_type :json
-      FilesystemUsage.average_usage(start_time, interval_minutes).to_json
+      FilesystemUsage.average_usage(start_time, interval).to_json
     end
 
     get "/data/disk_io" do
       content_type :json
-      DiskIO.average_io(start_time, interval_minutes).to_json
+      DiskIO.average_io(start_time, interval).to_json
     end
 
     get "/data/bandwidth" do
       content_type :json
-      Bandwidth.average_usage(start_time, interval_minutes).to_json
+      Bandwidth.average_usage(start_time, interval).to_json
     end
 
     private
@@ -71,11 +71,8 @@ module PunyMonitor
       end
     end
 
-    def duration
-      params[:duration] || "1d"
-    end
-
     def start_time
+      duration = params[:duration] || "1d"
       case duration
       when "1h" then 1.hour.ago
       when "3d" then 3.days.ago
@@ -85,7 +82,7 @@ module PunyMonitor
       end
     end
 
-    def interval_minutes
+    def interval
       (params[:interval] || "15").to_i
     end
 

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class CpuLoad < ApplicationModel
-  def self.average_load(start_time, end_time, minutes)
-    data = where(created_at: start_time..end_time)
+  def self.average_load(start_time, minutes)
+    data = where(created_at: start_time..)
       .group_by_time(minutes)
       .pluck(
         Arel.sql("datetime(#{group_format(minutes)}, 'unixepoch') as period"),

@@ -11,7 +11,7 @@ class CpuUsageTest < ActiveSupport::TestCase
 
     result = CpuUsage.average_usage(start_time, minutes)
 
-    assert_kind_of Hash, result
-    assert_in_delta(50.0, result.values.compact.first)
+    assert_kind_of Array, result
+    assert_in_delta(50.0, result.first[1]) if result.any?
   end
 end

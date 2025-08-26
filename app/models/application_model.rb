@@ -13,4 +13,3 @@ class ApplicationModel < ActiveRecord::Base
     "strftime('%s', created_at) / #{interval_seconds} * #{interval_seconds}"
   end
 end
-

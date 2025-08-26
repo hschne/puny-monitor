@@ -76,4 +76,4 @@ DiskIO.insert_all(disk_io_data)
 puts "✓ Created #{records_count} disk I/O records"
 
 puts "\nSeeding completed! Total records created: #{records_count * 6}"
-puts "Data covers: #{start_time.strftime('%Y-%m-%d %H:%M:%S')} to #{end_time.strftime('%Y-%m-%d %H:%M:%S')}"
+puts "Data covers: #{start_time.strftime("%Y-%m-%d %H:%M:%S")} to #{end_time.strftime("%Y-%m-%d %H:%M:%S")}"
