@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    puny-monitor (0.2.0)
+    puny-monitor (0.3.0)
       chartkick (~> 5.1)
       puma (~> 6.6)
       rackup (~> 2.1)
