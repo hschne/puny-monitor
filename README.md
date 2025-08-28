@@ -2,8 +2,6 @@
 
 # Puny Monitor
 
-<img alt="logo" src="/public/icon-512.png" width="256" height="auto">
-
 ### A batteries-included monitoring tool for single hosts.
 
 </div>
