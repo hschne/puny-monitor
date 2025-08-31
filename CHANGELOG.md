@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [0.3.0] - 2025-08-18
+
+- Improve query performance
+- Remove group_date dependency
+
 ## [0.2.0] - 2025-08-18
 
 - Add HTTP authentication
