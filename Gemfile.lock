@@ -165,7 +165,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop-performance (~> 1.25.0)
     stringio (3.1.7)
-    sys-filesystem (1.5.3)
+    sys-filesystem (1.5.4)
       ffi (~> 1.1)
     thor (1.4.0)
     tilt (2.6.1)
