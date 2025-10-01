@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = %w[lib]
 
   spec.add_dependency("chartkick", "~> 5.1")
-  spec.add_dependency("puma", "~> 6.6")
+  spec.add_dependency("puma", ">= 6.6", "< 8.0")
   spec.add_dependency("rackup", "~> 2.1")
   spec.add_dependency("rufus-scheduler", "~> 3.9")
   spec.add_dependency("sinatra", "~> 4.0")

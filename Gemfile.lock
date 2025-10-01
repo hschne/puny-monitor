@@ -3,7 +3,7 @@ PATH
   specs:
     puny-monitor (0.3.0)
       chartkick (~> 5.1)
-      puma (~> 6.6)
+      puma (>= 6.6, < 8.0)
       rackup (~> 2.1)
       rufus-scheduler (~> 3.9)
       sinatra (~> 4.0)
@@ -88,7 +88,7 @@ GEM
     psych (5.2.6)
       date
       stringio
-    puma (6.6.1)
+    puma (7.0.4)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
