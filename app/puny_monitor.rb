@@ -7,7 +7,7 @@ require_relative "../lib/system_utils"
 
 module PunyMonitor
   class App < Sinatra::Base
-    # include Authorization
+    include Authorization
 
     configure do
       register Sinatra::ActiveRecordExtension

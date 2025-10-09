@@ -19,8 +19,8 @@ module PunyMonitor
     end
 
     def self.authorize?
-      puts username
-      puts password
+      #puts username
+      #puts password
       username && password
     end
   end
